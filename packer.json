@@ -3,9 +3,9 @@
     "aws_region": "eu-central-1"
   },
   "builders": [{
-    "ami_name": "cyber-dojo-{{uuid | clean_ami_name}}",
-    "ami_description": "Cyberdojo application AMI based on Ubuntu",
-    "instance_type": "t2.micro",
+    "ami_name": "jenkins-artifactory-{{uuid | clean_ami_name}}",
+    "ami_description": "CI application AMI based on Ubuntu",
+    "instance_type": "t2.xlarge",
     "region": "{{user `aws_region`}}",
     "type": "amazon-ebs",
     "ssh_username": "ubuntu",
@@ -29,8 +29,7 @@
     "type": "shell",
     "expect_disconnect": "true",
     "inline": [
-      "bash /tmp/remote-scripts/setup.sh",
-      "bash /tmp/remote-scripts/install-cyberdojo.sh"
+      "cd /tmp/remote-scripts && bash ./setup.sh"
     ]
   }
 ]
